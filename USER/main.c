@@ -7,6 +7,17 @@
 static volatile uint8_t SPI_RX_BUFFER[10] = {0x00};
 static volatile uint16_t testReportCounter = 0;
 
+// static GPIO_TypeDef* TDC_CS_Port;
+// static uint16_t TDC_CS_Pin;
+/* 方法1:使用函数传递参数
+TDC7200_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+*/
+
+/* 方法2:使用宏定义
+*/
+#define TDC_CS_Port GPIOB
+#define TDC_CS_Pin GPIO_Pin_1
+
 void TIM3_Int_Init(u16 arr,u16 psc)
 {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
@@ -364,12 +375,20 @@ void EXTI0_IRQHandler(void)
 // 	printf("USART1_IRQ!\n");
 // }
 
-void TDC7200_Init(void)
+void TDC7200_Init()
 {
+<<<<<<< HEAD
 	// GPIO_ResetBits(GPIOC,GPIO_Pin_13);
 	// SPI2_ReadWriteByte(0x40);
 	// SPI2_ReadWriteByte(0x20);
 	// GPIO_SetBits(GPIOC,GPIO_Pin_13);
+=======
+
+	GPIO_ResetBits(TDC_CS_Port, TDC_CS_Pin);
+	SPI2_ReadWriteByte(0x40);
+	SPI2_ReadWriteByte(0x20);
+	GPIO_SetBits(TDC_CS_Port, TDC_CS_Pin);
+>>>>>>> 223166f59823ab9708d98db9f2534a1e7c497c3e
 // 	GPIO_ResetBits(GPIOC,GPIO_Pin_13);
 // 	SPI2_ReadWriteByte(0x42);
 // 	SPI2_ReadWriteByte(0x00);
@@ -388,7 +407,7 @@ void sysInit(void)
 	delay_init();
 	spiInit();
 	oscOutInit();
-	TDC7200_Init();
+	// TDC7200_Init();
 	EXTIX_Init();
 }
 
