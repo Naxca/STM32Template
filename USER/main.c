@@ -366,10 +366,10 @@ void EXTI0_IRQHandler(void)
 
 void TDC7200_Init(void)
 {
-	GPIO_ResetBits(GPIOC,GPIO_Pin_13);
-	SPI2_ReadWriteByte(0x40);
-	SPI2_ReadWriteByte(0x20);
-	GPIO_SetBits(GPIOC,GPIO_Pin_13);
+	// GPIO_ResetBits(GPIOC,GPIO_Pin_13);
+	// SPI2_ReadWriteByte(0x40);
+	// SPI2_ReadWriteByte(0x20);
+	// GPIO_SetBits(GPIOC,GPIO_Pin_13);
 // 	GPIO_ResetBits(GPIOC,GPIO_Pin_13);
 // 	SPI2_ReadWriteByte(0x42);
 // 	SPI2_ReadWriteByte(0x00);
